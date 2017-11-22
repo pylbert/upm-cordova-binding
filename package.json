@@ -1,0 +1,20 @@
+{
+  "name": "upm-cordova-binding",
+  "version": "0.1.0",
+  "description": "UPM Cordova Binding",
+  "bin": {"upm-cordova-binding": "./bin/upm-cordova-binding"},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunlin-link/upm-cordova-binding.git"
+  },
+  "keywords": [
+    "upm",
+    "cordova"
+  ],
+  "author": "Lin Sun <lin.sun@intel.com>",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/sunlin-link/upm-cordova-binding/issues"
+  },
+  "homepage": "https://github.com/sunlin-link/upm-cordova-binding"
+}

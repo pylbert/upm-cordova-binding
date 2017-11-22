@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const generator = require('../src/generator.js');
+
+var sourceDir = process.argv[2];
+if (!sourceDir) {
+    console.error('Must specify the source directory');
+    return;
+}
+
+var targetDir = process.argv[3];
+if (!targetDir) {
+    console.error('Must specify the target directory');
+    return;
+}
+
+var sourceVersion = process.argv[4];
+if (!sourceVersion) {
+    sourceVersion = '1.0';
+}
+
+var removeDirectory = function (path) {
+    if (fs.existsSync(path)) {
+        fs.readdirSync(path).forEach(function (file) {
+            var curPath = [path, file].join('/');
+            if (fs.statSync(curPath).isDirectory()) {
+                removeDirectory(curPath);
+            } else {
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
+};
+
+removeDirectory(targetDir);
+fs.mkdirSync(targetDir);
+generator.generatePlugin(sourceDir, targetDir, sourceVersion);
