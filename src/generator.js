@@ -31,13 +31,16 @@ var generatePlugin = function (sourceDir, targetDir, sourceVersion) {
                 if (line.indexOf("public ") == 0) {
                     line = line.substring(7);
 
-                    if (line.indexOf("class") == 0 || line.indexOf("synchronized") == 0 ||
-                        line.indexOf("final") == 0 || line.indexOf("static") == 0) {
+                    if (line.indexOf("class") == 0 ||
+                        line.indexOf("interface") == 0 ||
+                        line.indexOf("synchronized") == 0 ||
+                        line.indexOf("final") == 0 ||
+                        line.indexOf("static") == 0) {
                         return;
                     }
 
                     if (line.indexOf("{") != line.length - 1 || line.indexOf("(") < 0 || line.indexOf(")") < 0) {
-                        throw Error("Unsupported format");
+                        throw Error("Unsupported format: " + fullName + " classname: " + className + " javaClass: " + javaClass + " line: " + line);
                     }
 
                     if (line.indexOf(className) == 0) {
